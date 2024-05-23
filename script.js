@@ -28,7 +28,19 @@ class TodoList {
 
   editTask(task, newTask) {
     // [U]pdate
-    console.log("...");
+    let index = this.tasks.findIndex((e) => e.task == task);
+    if (index > -1) {
+      // apakah task sama dengan task lainnya?
+      let isSame = this.tasks.find((e) => e == newTask);
+
+      if (isSame == undefined) {
+        this.tasks[index].task = newTask;
+      } else {
+        console.error("This task have created!");
+      }
+    } else {
+      console.error("This task is not found!");
+    }
   }
 
   deleteTask(task) {
@@ -51,10 +63,11 @@ class TodoList {
   }
 }
 
+// Practice
 const Adam = new TodoList("Adam");
 Adam.addTask("menghafal juz 10");
 Adam.addTask("menghafal juz 2");
-// Adam.addTask("menghafal juz 15");
-// Adam.markAsCleared("menghafal juz 1");
-// Adam.deleteTask("menghafal juz 15");
+Adam.addTask("menghafal juz 15");
+Adam.markAsCleared("menghafal juz 1");
+Adam.deleteTask("menghafal juz 15");
 Adam.myTasks();
